@@ -6,7 +6,7 @@ class ReadLaser(Node):
         super().__init__('lidar_controller_node')
         self.subscription = self.create_subscription(
             LaserScan,
-            'scan',
+            '/scan',
             self.laser_callback,
             10
         )
