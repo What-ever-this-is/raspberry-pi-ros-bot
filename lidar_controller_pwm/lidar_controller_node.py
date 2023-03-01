@@ -1,6 +1,7 @@
 import rclpy as ros
 from rclpy.node import Node
-from sensor_msgs.msgs import LaserScan
+from sensor_msgs.msg import LaserScan
+import sensor_msg.msg as msgs
 class ReadLaser(Node):
     def __init__(self):
         super().__init__('lidar_controller_node')
