@@ -1,25 +1,25 @@
 import rclpy as ros
-from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
-import sensor_msgs.msg as msgs
-class ReadLaser(Node):
-    def __init__(self):
-        super().__init__('lidar_controller_node')
-        self.subscription = self.create_subscription(
-            LaserScan,
-            '/scan',
-            self.laser_callback,
-            10
-        )
-    def laser_callback(self,msg):
-        self.get_logger().info("I heard this: %f" %msg.data[100])
+
+g_node = None
+def laser_callback(message):
+    global g_node
+    print(message.data[100])
 
 def main(args=None):
-    print("oh hi")
-    ros.init()
-    reading_laser = ReadLaser()
-    ros.spin(reading_laser)
+    global g_node
+    print("WOW")
+    ros.init(args=args)
+    g_node = ros.create_node('lidar_subscriber')
+    subscription = g_node.create_subscription(LaserScan,'scan',laser_callback,10)
+    subscription
+    while ros.ok():
+        ros.spin_once(g_node)
+    g_node.destroy_node()
+    ros.shutdown()
+
 
 if __name__ == '__main__':
+    diditwork = True
     main()
     
