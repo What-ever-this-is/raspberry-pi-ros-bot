@@ -4,9 +4,7 @@ from sensor_msgs.msg import LaserScan
 g_node = None
 def laser_callback(message):
     global g_node
-    g_node.get_logger().info(
-        "Recieved: %s" % message.data[100] 
-    )
+    print(message.data[100])
 
 def main(args=None):
     global g_node
