@@ -5,6 +5,7 @@ g_node = None
 def laser_callback(message):
     global g_node
     print(message.data[100])
+    print()
 
 def main(args=None):
     global g_node
